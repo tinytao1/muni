@@ -2,6 +2,11 @@
 <html>
 <head>
 <style>
+
+body {
+	background: antiquewhite;
+    }
+    
 table {
   border-collapse: collapse;
   width: 100%;
@@ -11,9 +16,13 @@ th, td {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  text-align: center;     /* Centers horizontally (left to right) */
+  vertical-align: middle; /* Centers vertically (top to bottom) */
+  white-space: nowrap;
+  border-right: 1px solid #cccccc;
 }
 
-tr:hover {background-color: coral;}
+tr:hover {background-color: #FFCAB7;}
 
 #myInput {
   background-image: url('/css/searchicon.png');
@@ -27,64 +36,162 @@ tr:hover {background-color: coral;}
   border-radius: 4px;
 }
 
+caption {
+  font-size: 1.25rem;
+  font-family: sans-serif;
+  padding-bottom: 1.25rem;
+}
+
+h2, p {
+  color: gray;
+  }
+
 </style>
 </head>
 <body>
 
 <h1>
-	MUNI
-    </h1>
-    
+	MUNI 
+    <br>
+	Frequncy Guide
+</h1>
+
+
 <h2>
-	Frequncy Guide</h2>
-
-<h3>
-  Weekday - Weekend &amp; Holiday
-  </h3>
-
-
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Route..." title="Type in a name">
+notes:<br>
+  Weekday - Weekend &amp; Holiday<br>
+   
+</h2>
 
 <hr>
 
-
 <!-- START TABLE -->
 
-<table>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Route" title="Type in a name">
+
+<table id="myTable">
+  
+  <caption>Weekday (frequencies in minutes)</caption>
 
   <tr>
-    <th>Route</th>
-    <th>Last Name</th>
-    <th>Points</th>
+    <th style="width: 125px;">Route</th>
+    
+    <th>Morning <br> 6- 10</th>
+    
+    <th>Midday <br> 10- 3</th>
+    
+    <th>Evening <br> 3- 7</th>
+    
+    <th>Late Night <br> 7- 10</th>
+    
+    <th>Owl <br> 10pm- 6am</th>
+    
+    <th>Time <br> span</th>
+    
+    <th></th>
+    
+    <th></th>
+    
   </tr>
   
   <tr>
     <td>1</td>
-    <td>Griffin</td>
-    <td>$100</td>
+    <td>6</td>
+    <td>8</td>
+    <td>9</td>
+    <td>15</td>
+    <td></td>
+    <td>5am - 12am</td>
   </tr>
   
   <tr>
-    <td>Lois</td>
-    <td>Griffin</td>
-    <td>$150</td>
+    <td>1X</td>
+    <td>15</td>
+    <td>30</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>7:15am - 8:20am <br>
+    	4:30pm - 5:30pm</td>
   </tr>
   
   <tr>
-    <td>Joe</td>
-    <td>Swanson</td>
-    <td>$300</td>
+    <td>2</td>
+    <td>20</td>
+    <td>20</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
   </tr>
   
   <tr>
-    <td>Cleveland</td>
-    <td>Brown</td>
-    <td>$250</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
   </tr>
   
 </table>
 
 <!-- END TABLE -->
+
+
+<p>
+notes:<br>
+  Weekday - Weekend &amp; Holiday<br>
+  Route names, numbers, destinations, descriptions<br>
+  hide col.s<br>
+  
+</p>
+
+
+<script>
+function myFunction() {
+
+  var input, filter, table, tr, td, i, txtValue;
+  
+  input = document.getElementById("myInput");
+  
+  filter = input.value.toUpperCase();
+  
+  table = document.getElementById("myTable");
+  
+  tr = table.getElementsByTagName("tr");
+  
+  for (i = 0; i < tr.length; i++) {
+  
+    td = tr[i].getElementsByTagName("td")[0];
+    
+    if (td) {
+    
+      txtValue = td.textContent || td.innerText;
+      
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      
+        tr[i].style.display = "";
+        
+      } else {
+      
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
 
 
 </body>
